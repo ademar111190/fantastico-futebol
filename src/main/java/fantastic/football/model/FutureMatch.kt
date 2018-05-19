@@ -1,6 +1,6 @@
 package fantastic.football.model
 
 data class FutureMatch(
-    val home: Team,
-    val visitor: Team
-)
+    override val home: Team,
+    override val visitor: Team
+) : Match
