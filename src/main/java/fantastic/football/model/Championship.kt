@@ -3,14 +3,20 @@ package fantastic.football.model
 class Championship(
     val name: String,
     val teams: List<Team>,
-    val futureMatches: MutableList<FutureMatch> = mutableListOf(),
-    val pastMatches: ArrayList<PastMatch> = arrayListOf()
+    private val rounds: MutableList<Round>
 ) {
 
-    fun addMatch(pastMatch: PastMatch) {
-        pastMatches += pastMatch
-        futureMatches.removeIf { it.home == pastMatch.home && it.visitor == pastMatch.visitor }
+    fun swapRound(old: Round, new: Round) {
+        val index = rounds.indexOf(old)
+        rounds.removeAt(index)
+        rounds.add(index, new)
     }
+
+    fun completed() = rounds.none { it.hasFutureMatch() }
+
+    fun nextRound() = rounds.first { it.hasFutureMatch() }
+
+    fun rounds() = rounds.toList()
 
     override fun toString(): String {
         val stringBuilder = StringBuilder("Campeonato: ").append(name).append('\n')
@@ -23,12 +29,12 @@ class Championship(
         val points = hashMapOf<Team, Int>()
         val favorScore = hashMapOf<Team, Int>()
         val againstScore = hashMapOf<Team, Int>()
-        teams.forEach { team ->
-            pastMatches.filter { it.home == team || it.visitor == team }.forEach {
-                val (favor, against) = if (it.home == team) {
-                    it.homeScore to it.visitorScore
+        rounds.flatMap { it.pastMatches() }.forEach { match ->
+            teams.filter { it == match.home || it == match.visitor }.forEach { team ->
+                val (favor, against) = if (match.home == team) {
+                    match.homeScore to match.visitorScore
                 } else {
-                    it.visitorScore to it.homeScore
+                    match.visitorScore to match.homeScore
                 }
                 points[team] = points.getOrDefault(team, 0) + when {
                     favor > against -> 3

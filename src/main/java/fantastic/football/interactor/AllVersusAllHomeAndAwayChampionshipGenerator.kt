@@ -1,16 +1,14 @@
 package fantastic.football.interactor
 
-import fantastic.football.model.Championship
-import fantastic.football.model.FutureMatch
-import fantastic.football.model.Team
+import fantastic.football.model.*
 
 class AllVersusAllHomeAndAwayChampionshipGenerator : ChampionshipGenerator {
 
     override fun generate(name: String, teams: List<Team>): Championship {
-        return Championship(name, teams, createFutureMatches(teams), arrayListOf())
+        return Championship(name, teams, createRounds(teams))
     }
 
-    private fun createFutureMatches(teams: List<Team>): MutableList<FutureMatch> {
+    private fun createRounds(teams: List<Team>): MutableList<Round> {
         var teamsSize = teams.size
 
         if (teamsSize < 2) {
@@ -18,7 +16,7 @@ class AllVersusAllHomeAndAwayChampionshipGenerator : ChampionshipGenerator {
         }
 
         val mockTeam = Team("mock$this${Math.random()}")
-        val futureMatches = mutableListOf<FutureMatch>()
+        val rounds = mutableListOf<Round>()
         var j: Int
         val local = ArrayList(teams)
         if (teamsSize % 2 == 1) {
@@ -27,6 +25,7 @@ class AllVersusAllHomeAndAwayChampionshipGenerator : ChampionshipGenerator {
         }
 
         do {
+            val matches = mutableListOf<Match>()
             for (i in 0 until teamsSize) {
                 j = teamsSize - 1 - i
                 if (j <= i) {
@@ -35,9 +34,10 @@ class AllVersusAllHomeAndAwayChampionshipGenerator : ChampionshipGenerator {
                 val home = local[i]
                 val visitor = local[j]
                 if (home != mockTeam && visitor != mockTeam) {
-                    futureMatches += FutureMatch(home, visitor)
+                    matches += FutureMatch(home, visitor)
                 }
             }
+            rounds.add(Round(matches))
             local.add(1, local.removeAt(local.size - 1))
         } while (
             if (local.contains(mockTeam)) {
@@ -47,9 +47,9 @@ class AllVersusAllHomeAndAwayChampionshipGenerator : ChampionshipGenerator {
             }
         )
 
-        futureMatches.addAll(futureMatches.map { FutureMatch(it.visitor, it.home) })
+        rounds.addAll(rounds.map { Round(it.matches.map { FutureMatch(it.visitor, it.home) }) })
 
-        return futureMatches
+        return rounds
     }
 
 }
