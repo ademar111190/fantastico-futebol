@@ -1,11 +1,11 @@
 package fantastic.football
 
-import fantastic.football.interactor.CreateChampionship
+import fantastic.football.interactor.AllVersusAllHomeAndAwayChampionshipGenerator
 import fantastic.football.interactor.PlayMatch
 import fantastic.football.model.Team
 
 fun main(args: Array<String>) {
-    val paulista = CreateChampionship().allVersusAllHomeAndAway("Paulistão", listOf(
+    val paulista = AllVersusAllHomeAndAwayChampionshipGenerator().generate("Paulistão", listOf(
         Team("Corinthians"),
         Team("Palmeiras"),
         Team("Santos"),
