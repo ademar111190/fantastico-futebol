@@ -4,12 +4,12 @@ class Championship(
     val name: String,
     val teams: List<Team>,
     val futureMatches: MutableList<FutureMatch> = mutableListOf(),
-    val matches: ArrayList<Match> = arrayListOf()
+    val pastMatches: ArrayList<PastMatch> = arrayListOf()
 ) {
 
-    fun addMatch(match: Match) {
-        matches += match
-        futureMatches.removeIf { it.home == match.home && it.visitor == match.visitor }
+    fun addMatch(pastMatch: PastMatch) {
+        pastMatches += pastMatch
+        futureMatches.removeIf { it.home == pastMatch.home && it.visitor == pastMatch.visitor }
     }
 
     override fun toString(): String {
@@ -24,7 +24,7 @@ class Championship(
         val favorScore = hashMapOf<Team, Int>()
         val againstScore = hashMapOf<Team, Int>()
         teams.forEach { team ->
-            matches.filter { it.home == team || it.visitor == team }.forEach {
+            pastMatches.filter { it.home == team || it.visitor == team }.forEach {
                 val (favor, against) = if (it.home == team) {
                     it.homeScore to it.visitorScore
                 } else {

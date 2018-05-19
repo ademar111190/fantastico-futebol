@@ -27,7 +27,7 @@ class AllVersusAllHomeAndAwayChampionshipGeneratorTest {
         val championship = AllVersusAllHomeAndAwayChampionshipGenerator().generate(NAME, listOf())
         assertThat(championship.name).isEqualTo(NAME)
         assertThat(championship.teams).isEmpty()
-        assertThat(championship.matches).isEmpty()
+        assertThat(championship.pastMatches).isEmpty()
         assertThat(championship.futureMatches).isEmpty()
     }
 
@@ -36,7 +36,7 @@ class AllVersusAllHomeAndAwayChampionshipGeneratorTest {
         val championship = AllVersusAllHomeAndAwayChampionshipGenerator().generate(NAME, listOf(mockTeam1))
         assertThat(championship.name).isEqualTo(NAME)
         assertThat(championship.teams).containsExactly(mockTeam1)
-        assertThat(championship.matches).isEmpty()
+        assertThat(championship.pastMatches).isEmpty()
         assertThat(championship.futureMatches).isEmpty()
     }
 
@@ -45,7 +45,7 @@ class AllVersusAllHomeAndAwayChampionshipGeneratorTest {
         val championship = AllVersusAllHomeAndAwayChampionshipGenerator().generate(NAME, listOf(mockTeam1, mockTeam2))
         assertThat(championship.name).isEqualTo(NAME)
         assertThat(championship.teams).containsExactly(mockTeam1, mockTeam2)
-        assertThat(championship.matches).isEmpty()
+        assertThat(championship.pastMatches).isEmpty()
         assertThat(championship.futureMatches).containsExactly(
             FutureMatch(mockTeam1, mockTeam2),
             FutureMatch(mockTeam2, mockTeam1))
@@ -56,7 +56,7 @@ class AllVersusAllHomeAndAwayChampionshipGeneratorTest {
         val championship = AllVersusAllHomeAndAwayChampionshipGenerator().generate(NAME, listOf(mockTeam1, mockTeam2, mockTeam3))
         assertThat(championship.name).isEqualTo(NAME)
         assertThat(championship.teams).containsExactly(mockTeam1, mockTeam2, mockTeam3)
-        assertThat(championship.matches).isEmpty()
+        assertThat(championship.pastMatches).isEmpty()
         assertThat(championship.futureMatches).containsExactly(
             FutureMatch(mockTeam2, mockTeam3),
             FutureMatch(mockTeam1, mockTeam3),
@@ -71,7 +71,7 @@ class AllVersusAllHomeAndAwayChampionshipGeneratorTest {
         val championship = AllVersusAllHomeAndAwayChampionshipGenerator().generate(NAME, listOf(mockTeam1, mockTeam2, mockTeam3, mockTeam4))
         assertThat(championship.name).isEqualTo(NAME)
         assertThat(championship.teams).containsExactly(mockTeam1, mockTeam2, mockTeam3, mockTeam4)
-        assertThat(championship.matches).isEmpty()
+        assertThat(championship.pastMatches).isEmpty()
         assertThat(championship.futureMatches).containsExactly(
             FutureMatch(mockTeam1, mockTeam4),
             FutureMatch(mockTeam2, mockTeam3),
@@ -92,7 +92,7 @@ class AllVersusAllHomeAndAwayChampionshipGeneratorTest {
         val championship = AllVersusAllHomeAndAwayChampionshipGenerator().generate(NAME, listOf(mockTeam1, mockTeam2, mockTeam3, mockTeam4, mockTeam5))
         assertThat(championship.name).isEqualTo(NAME)
         assertThat(championship.teams).containsExactly(mockTeam1, mockTeam2, mockTeam3, mockTeam4, mockTeam5)
-        assertThat(championship.matches).isEmpty()
+        assertThat(championship.pastMatches).isEmpty()
         assertThat(championship.futureMatches).containsExactly(
             FutureMatch(mockTeam2, mockTeam5),
             FutureMatch(mockTeam3, mockTeam4),
@@ -121,7 +121,7 @@ class AllVersusAllHomeAndAwayChampionshipGeneratorTest {
         val championship = AllVersusAllHomeAndAwayChampionshipGenerator().generate(NAME, listOf(mockTeam1, mockTeam2, mockTeam3, mockTeam4, mockTeam5, mockTeam6))
         assertThat(championship.name).isEqualTo(NAME)
         assertThat(championship.teams).containsExactly(mockTeam1, mockTeam2, mockTeam3, mockTeam4, mockTeam5, mockTeam6)
-        assertThat(championship.matches).isEmpty()
+        assertThat(championship.pastMatches).isEmpty()
         assertThat(championship.futureMatches).containsExactly(
             FutureMatch(mockTeam1, mockTeam6),
             FutureMatch(mockTeam2, mockTeam5),

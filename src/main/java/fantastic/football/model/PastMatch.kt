@@ -1,6 +1,6 @@
 package fantastic.football.model
 
-data class Match(
+data class PastMatch(
     val home: Team,
     val visitor: Team,
     val homeScore: Int,
