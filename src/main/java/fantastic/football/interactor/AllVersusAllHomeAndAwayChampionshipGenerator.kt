@@ -15,7 +15,7 @@ class AllVersusAllHomeAndAwayChampionshipGenerator : ChampionshipGenerator {
             return mutableListOf()
         }
 
-        val mockTeam = Team("mock$this${Math.random()}")
+        val mockTeam = Team("mock$this${Math.random()}", Location("mock$this${Math.random()}"))
         val rounds = mutableListOf<Round>()
         var j: Int
         val local = ArrayList(teams)
