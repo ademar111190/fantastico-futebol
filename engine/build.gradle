@@ -1,0 +1,31 @@
+apply plugin: "kotlin"
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    apply from: "../libraries.gradle"
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath classpathies.kotlin
+    }
+}
+
+test {
+    testLogging {
+        events "started", "passed", "skipped", "failed"
+    }
+}
+
+dependencies {
+    implementation deps.stdlib
+
+    testImplementation tests.junit
+    testImplementation tests.assertj
+    testImplementation tests.mockito
+    testImplementation tests.mockitoKotlin
+}

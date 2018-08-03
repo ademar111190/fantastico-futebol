@@ -1,0 +1,26 @@
+ext {
+
+    assertj = "3.8.0"
+    javaFX = "8.8.2"
+    junit = "4.12"
+    kotlin = "1.2.41"
+    mockito = "2.18.3"
+    mockitoKotlin = "1.5.0"
+
+    classpathies = [
+            kotlin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin",
+            javaFX: "de.dynamicfiles.projects.gradle.plugins:javafx-gradle-plugin:$javaFX",
+    ]
+
+    deps = [
+            stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin",
+    ]
+
+    tests = [
+            assertj      : "org.assertj:assertj-core:$assertj",
+            junit        : "junit:junit:$junit",
+            mockito      : "org.mockito:mockito-core:$mockito",
+            mockitoKotlin: "com.nhaarman:mockito-kotlin:$mockitoKotlin",
+    ]
+
+}

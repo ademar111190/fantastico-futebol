@@ -1,9 +1,9 @@
 package fantastic.football.model
 
 class Championship(
-    val name: String,
-    val teams: List<Team>,
-    private val rounds: MutableList<Round>
+        val name: String,
+        val teams: List<Team>,
+        private val rounds: MutableList<Round>
 ) {
 
     fun swapRound(old: Round, new: Round) {
@@ -20,12 +20,12 @@ class Championship(
 
     override fun toString(): String {
         val stringBuilder = StringBuilder("Campeonato: ").append(name).append('\n')
-            .append("Pos").append('\t')
-            .append("Teams           ").append('\t')
-            .append("Fav").append('\t')
-            .append("Aga").append('\t')
-            .append("Bal").append('\t')
-            .append("Points").append('\n')
+                .append("Pos").append('\t')
+                .append("Teams                 ").append('\t')
+                .append("Fav").append('\t')
+                .append("Aga").append('\t')
+                .append("Bal").append('\t')
+                .append("Points").append('\n')
         val points = hashMapOf<Team, Int>()
         val favorScore = hashMapOf<Team, Int>()
         val againstScore = hashMapOf<Team, Int>()
@@ -67,13 +67,13 @@ class Championship(
             val against = againstScore.getOrDefault(team, 0)
             val balance = favor - against
             stringBuilder.append(position + 1).append('º').append('\t')
-                .append(team.name)
-                .append((0..Math.max(0, 15 - team.name.length)).map { ' ' }.joinToString(separator = ""))
-                .append('\t')
-                .append(favor).append('\t')
-                .append(against).append('\t')
-                .append(balance).append('\t')
-                .append(score).append('\n')
+                    .append(team.name)
+                    .append((0..Math.max(0, 19 - team.name.length)).map { ' ' }.joinToString(separator = ""))
+                    .append('\t')
+                    .append(favor).append('\t')
+                    .append(against).append('\t')
+                    .append(balance).append('\t')
+                    .append(score).append('\n')
         }
         return stringBuilder.toString()
     }

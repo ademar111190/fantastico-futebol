@@ -1,0 +1,42 @@
+apply plugin: "kotlin"
+apply plugin: "javafx-gradle-plugin"
+
+group "fantastic.football"
+version "0.0.1"
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    apply from: "../libraries.gradle"
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath classpathies.kotlin
+        classpath classpathies.javaFX
+    }
+}
+
+jfx {
+    mainClass = "fantastic.football.MainKt"
+    vendor = "Ademar"
+}
+
+test {
+    testLogging {
+        events "started", "passed", "skipped", "failed"
+    }
+}
+
+dependencies {
+    implementation deps.stdlib
+    implementation project(":engine")
+
+    testImplementation tests.junit
+    testImplementation tests.assertj
+    testImplementation tests.mockito
+    testImplementation tests.mockitoKotlin
+}
