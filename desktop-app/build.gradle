@@ -4,6 +4,9 @@ apply plugin: "javafx-gradle-plugin"
 group "fantastic.football"
 version "0.0.1"
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 repositories {
     mavenCentral()
 }
