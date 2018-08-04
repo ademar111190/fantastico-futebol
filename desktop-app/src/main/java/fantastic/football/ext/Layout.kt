@@ -1,4 +1,6 @@
-package fantastic.football
+package fantastic.football.ext
+
+import fantastic.football.App
 
 enum class FXML(
         val path: String

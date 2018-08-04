@@ -2,6 +2,7 @@ ext {
 
     assertj = "3.8.0"
     javaFX = "8.8.2"
+    jfoenix = "8.0.7"
     junit = "4.12"
     kotlin = "1.2.41"
     mockito = "2.18.3"
@@ -13,7 +14,8 @@ ext {
     ]
 
     deps = [
-            stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin",
+            stdlib : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin",
+            jfoenix: "com.jfoenix:jfoenix:$jfoenix",
     ]
 
     tests = [
