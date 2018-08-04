@@ -1,0 +1,27 @@
+---
+format_version: '4'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: other
+trigger_map:
+- push_branch: "*"
+  workflow: primary
+- pull_request_source_branch: "*"
+  workflow: primary
+workflows:
+  primary:
+    steps:
+    - activate-ssh-key:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone: {}
+    - apt-get-install:
+        inputs:
+        - packages: openjfx libopenjfx-java libopenjfx-jni
+    - gradle-unit-test:
+        inputs:
+        - gradle_file: ''
+        - unit_test_task: clean engine:test deskop-app:test
+app:
+  envs:
+  - opts:
+      is_expand: false
+    GRADLEW_PATH: "./gradlew"

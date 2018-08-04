@@ -1,2 +1,4 @@
+rootProject.name = "fantastico-futebol"
+
 include ":engine"
 include ":desktop-app"
